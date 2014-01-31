@@ -1,3 +1,8 @@
+--
+layout: default
+title: Something something dark side.
+--
+
 <!doctype html>
 <html>
   <head>
@@ -27,7 +32,30 @@
         <p align="justify">Hi there! My name's Mark. I'm a computer scientist, with a background in physics, who's pretending to be a computational geneticist! To that end, I work as a programmer at the University of Chicago's Institute for Genomics and Systems Biology. I'm responsible for writing programs designed to help doctors determine the best course of treatment for cancer patients, and maybe discover some cool biology along the way!</p>
 
         <h3><a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h3>
-        
+        <p align="justify">While not at my day job, I like to spend my time playing with code, usually C/C++ and Python. Here are some of my favorite projects. If you like what you see, feel free to take a copy of my git repos!</p>
+
+        <h3><a name="projects" href="https://github.com/MurphyMarkW/Tensor.old">Tensor</a></h3>
+        <p align="justify">Tensor (or libtensor) is a low-level, high-performance C++ library designed to provide tensor-like syntax to classes with index style accessors. What is a tensor, you ask? You can think of it as a multi-dimensional array, but with some mathematical functionality, such as adding, subtracting, and <a href="http://en.wikipedia.org/wiki/Tensor_algebra">other cool stuff</a>.</p>
+ 
+{% highlight c++ %}
+<pre><code>#include <tensor.h>
+
+using namespace tensor;
+
+int main() {
+  int size = 5;
+
+  // An order-2 tensor of ints,
+  // aka a matrix, of size 5x5.
+  Tensor<int,2> matrix(size,size);
+  for(int i = 0; i < size; ++i) {
+    for(int j = 0; j < size; ++j) {
+      matrix(i,j) = i*6+j;
+    }
+  }
+};
+</code></pre>
+{% endhighlight %}
 
         <pre><code>$ cd your_repo_root/repo_name
         $ git fetch origin

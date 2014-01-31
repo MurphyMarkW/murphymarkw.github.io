@@ -38,29 +38,34 @@ title: Something something dark side.
         <p align="justify">Tensor (or libtensor) is a low-level, high-performance C++ library designed to provide tensor-like syntax to classes with index style accessors. What is a tensor, you ask? You can think of it as a multi-dimensional array, but with some mathematical functionality, such as adding, subtracting, and <a href="http://en.wikipedia.org/wiki/Tensor_algebra">other cool stuff</a>.</p>
  
 {% highlight c++ %}
-<pre><code>#include <tensor.h>
+// libtensor lets you do cool stuff like...
+Tensor<int,1> t(size);              // A regular dynamic array.
+Tensor<int,2> t(size0,size1);       // A dynamic matrix.
+Tensor<int,3> t(size0,size1,size2); // A dynamic... Cube?
+Tensor<int,4> t(size0,...,size3);   // Ok, these must be hard-coded...
+...
+Tensor<int,20> t(size0,size1,...,size19); // Or not...
+...
+Tensor<int,12345> t(size0,size1,...,size12344); // wow   such size   so amaze
 
-using namespace tensor;
+// Accessors depend on the tensor order, such as...
+Tensor<int,3> t(size0,size1,size2);
+t(1,5)      = 41; // Compile time syntax error!
+t(1,5,3,4)  = 43; // Compile time syntax error!
+t(1,5,3)    = 42; // Got it!
 
-int main() {
-  int size = 5;
+// And you can get at sub-tensor elements as well!
+Tensor<int,3> tensor(size0,size1,size2);
+Tensor<int,2> sub_tensor = tensor[1];
+Tensor<int,1> sub_sub_tensor = sub_tensor[5];
+sub_sub_tensor(3) = 42; // Ok...
+sub_tensor(5,3)  == 42; // True!
+tensor(1,5,3)    == 42; // Also true!
 
-  // An order-2 tensor of ints,
-  // aka a matrix, of size 5x5.
-  Tensor<int,2> matrix(size,size);
-  for(int i = 0; i < size; ++i) {
-    for(int j = 0; j < size; ++j) {
-      matrix(i,j) = i*6+j;
-    }
-  }
-};
-</code></pre>
+// And it also includes fancy expression templating that -also- behaves like tensors!
+t += (t*(t+t)-(t-3))/5.23; // Optimized at compile-time! Only one pass over t!
+t /= (a*(b+c)-(d-3))/5.23; // Or, only one pass over each a, b, c, d and t!
 {% endhighlight %}
-
-        <pre><code>$ cd your_repo_root/repo_name
-        $ git fetch origin
-        $ git checkout gh-pages
-        </code></pre>
 
 <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 

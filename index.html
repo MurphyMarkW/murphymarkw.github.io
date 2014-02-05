@@ -50,8 +50,8 @@ Tensor<int,12345> t(size0,size1,...,size12344); // wow   such size   so amaze
 
 // Accessors depend on the tensor order, such as...
 Tensor<int,3> t(size0,size1,size2);
-t(1,5)      = 41; // Compile time syntax error!
-t(1,5,3,4)  = 43; // Compile time syntax error!
+t(1,5)      = 42; // Compile time syntax error!
+t(1,5,3,4)  = 42; // Compile time syntax error!
 t(1,5,3)    = 42; // Got it!
 
 // And you can get at sub-tensor elements as well!

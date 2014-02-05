@@ -56,11 +56,13 @@ t(1,5,3)    = 42; // Got it!
 
 // And you can get at sub-tensor elements as well!
 Tensor<int,3> tensor(size0,size1,size2);
+tensor(1,5,3) = 42;
+
 Tensor<int,2> sub_tensor = tensor[1];
+sub_tensor(5,3) == 42; // True!
+
 Tensor<int,1> sub_sub_tensor = sub_tensor[5];
-sub_sub_tensor(3) = 42; // Ok...
-sub_tensor(5,3)  == 42; // True!
-tensor(1,5,3)    == 42; // Also true!
+sub_sub_tensor(3) == 42; // Also true!
 
 // And it also includes fancy expression templating that -also- behaves like tensors!
 t += (t*(t+t)-(t-3))/5.23; // Optimized at compile-time! Only one pass over t!

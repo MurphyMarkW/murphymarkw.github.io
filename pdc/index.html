@@ -1,1 +1,86 @@
-OMG HELLO
+---
+layout: default
+title: Something something PDC.
+---
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Murphymarkw.github.io by MurphyMarkW</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>White Lab PDC Examples</h1>
+        <p><a href="https://www.opensciencedatacloud.org/support/pdc.html">PDC Support Docs!</a></p>
+      </header>
+
+      <section>
+        <h3><a name="welcome" class="anchor" href="#welcome"><span class="octicon octicon-link"></span></a>Welcome!</h3>
+        <p align="justify">Hi there! My name's Mark. I'm a computer scientist, with a background in physics. I work as a programmer at the University of Chicago's Institute for Genomics and Systems Biology. I'm responsible for writing programs designed to help doctors determine the best course of treatment for cancer patients, and maybe discover some cool biology along the way!</p>
+
+        <h3><a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h3>
+        <p align="justify">While not at my day job, I like to spend my time playing with code, usually C/C++ and Python. Here are some of my favorite projects. If you like what you see, feel free to take a copy of my git repos!</p>
+
+        <h3><a name="tensor" href="https://github.com/MurphyMarkW/Tensor.old" target="_top">Tensor</a></h3>
+        <h5><font color="red">Currently not updated on GitHub!</font></h5>
+        <p align="justify">Tensor (or libtensor) is a low-level, high-performance C++ library designed to provide tensor-like syntax to classes with index style accessors. What is a tensor, you ask? You can think of it as a multi-dimensional array, but with some mathematical functionality, such as adding, subtracting, and <a href="http://en.wikipedia.org/wiki/Tensor" target="_top">other cool stuff</a>.</p>
+ 
+{% highlight c++ %}
+// libtensor lets you do cool stuff like...
+Tensor<int,1> t(size);              // A regular dynamic array.
+Tensor<int,2> t(size0,size1);       // A dynamic matrix.
+Tensor<int,3> t(size0,size1,size2); // A dynamic... Cube?
+Tensor<int,4> t(size0,...,size3);   // Ok, these must be hard-coded...
+...
+Tensor<int,20> t(size0,size1,...,size19); // Or not...
+...
+Tensor<int,12345> t(size0,size1,...,size12344); // wow   such size   so amaze
+
+// Accessors depend on the tensor order, such as...
+Tensor<int,3> t(size0,size1,size2);
+t(1,5)      = 42; // Compile time syntax error!
+t(1,5,3,4)  = 42; // Compile time syntax error!
+t(1,5,3)    = 42; // Got it!
+
+// And you can get at sub-tensor elements as well!
+Tensor<int,3> tensor(size0,size1,size2);
+tensor(1,5,3) = 42;
+
+Tensor<int,2> sub_tensor = tensor[1];
+sub_tensor(5,3) == 42; // True!
+
+Tensor<int,1> sub_sub_tensor = sub_tensor[5];
+sub_sub_tensor(3) == 42; // Also true!
+
+// And it also includes fancy expression templating that -also- behaves like tensors!
+t += (t*(t+t)-(t-3))/5.23; // Optimized at compile-time! Only one pass over t!
+t /= (a*(b+c)-(d-3))/5.23; // Or, only one pass over each a, b, c, d and t!
+{% endhighlight %}
+
+        <h3><a name="genepy" href="https://github.com/MurphyMarkW/genepy" target="_top">Genepy (Génépi)</a></h3>
+        <p align="justify">Genepy is a collection of sometimes random, sometimes directed, potentially useful Python utilities for genomics analysis. Some of the stuff I write for Genepy gets used at my job, some of it gets used by other people, but most of it is just stuff I thought would be useful or interesting. Check it out!</p>
+ 
+{% highlight python %}
+# TODO...
+{% endhighlight %}
+
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <!-- <script src="javascripts/scale.fix.js"></script> -->
+    
+  </body>
+</html>

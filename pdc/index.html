@@ -37,6 +37,13 @@ title: Something something PDC.
 % ssh-keygen -f id_local -N <password>
 {% endhighlight %}
 
+        <p align="justify">This will generate two files: <b>id_local</b> and <b>id_local.pub</b>. <b>id_local</b> must be kept private at all times! However, <b>id_local.pub</b> is intended to be made public - this is the part of the key-pair that is uploaded to servers to gain ssh access. For now, the Tukey interface that supports loading your public key, <b>id_local.pub</b>, is down. So you'll need to send off a support email with your public key attached. Once it's loaded, you'll be able to log in with the following commands:</p>
+
+{% highlight bash %}
+# Log into PDC using your private key!.
+% ssh -A -i id_local <username>@bionimbus-pdc.opensciencedatacloud.org
+{% endhighlight %}
+
         <h3><a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h3>
         <p align="justify">While not at my day job, I like to spend my time playing with code, usually C/C++ and Python. Here are some of my favorite projects. If you like what you see, feel free to take a copy of my git repos!</p>
 

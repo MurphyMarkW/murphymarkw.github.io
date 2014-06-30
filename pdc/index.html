@@ -37,11 +37,22 @@ title: Something something PDC.
 % ssh-keygen -f id_local -N <password>
 {% endhighlight %}
 
-        <p align="justify">This will generate two files: <b>id_local</b> and <b>id_local.pub</b>. Note: <b>id_local</b> must be kept private at all times! However, <b>id_local.pub</b> is intended to be made public - this is the part of the key-pair that is uploaded to servers to gain ssh access. For now, the Tukey interface that supports loading your public key, <b>id_local.pub</b>, is down. So you'll need to send off a support email with your public key attached. Once it's loaded, you'll be able to log in with the following commands:</p>
+        <p align="justify">This will generate two files: <b>id_local</b> and <b>id_local.pub</b>. Note: <b>id_local</b> must be kept private at all times! If it is ever made public, you should regenerate your key-pair. However, <b>id_local.pub</b> is intended to be made public - this is the part of the key-pair that is uploaded to servers to gain ssh access. For now, the Tukey interface that supports loading your public key, <b>id_local.pub</b>, is down. So you'll need to send off a support email with your public key attached. Once it's loaded, you'll be able to log in with the following commands:</p>
 
 {% highlight bash %}
-# Log into PDC using your private key!.
+# Log on to PDC using your private key!.
 % ssh -A -i id_local <username>@bionimbus-pdc.opensciencedatacloud.org
+{% endhighlight %}
+
+        <p align="justify">(optional - though recommended) To make logging on to virtual machines easier, you can load your public key into the OpenStack controller:</p>
+
+{% highlight bash %}
+# Copy public key to the PDC server.
+% scp -i id_local id_local.pub <username>@bionimbus-pdc.opensciencedatacloud.org:~/
+# Log on to PDC.
+% ssh -A -i id_local <username>@bionimbus-pdc.opensciencedatacloud.org
+# Load public key into OpenStack controller.
+% nova keypair-add --pub-key id_local.pub <pubkey_name>
 {% endhighlight %}
 
         <h3><a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h3>

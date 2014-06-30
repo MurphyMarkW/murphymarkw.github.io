@@ -29,7 +29,7 @@ title: Something something PDC.
         <h3><a name="welcome" class="anchor" href="#welcome"><span class="octicon octicon-link"></span></a>Welcome!</h3>
         <p align="justify">Hi there! You've found your way to Mark's Whacky Waving Inflatible Arm Flailing PDC Tutorials! As a beta tested for the new Protected Data Cloud at the University of Chicago, I thought it would be helpful to put together a few tutorials, tips, tricks and gotchas for utilizing the new PDC system. Let's get started!</p>
 
-        <h3><a name="logging in" class="anchor" href="#logging_in"><span class="octicon octicon-link"></span></a>Logging in!</h3>
+        <h3><a name="logging_in" class="anchor" href="#logging_in"><span class="octicon octicon-link"></span></a>Logging in!</h3>
         <p align="justify">Logging into the PDC system is just like logging in to any other system via ssh. However, only login via pubkey is allowed - so no passwords! This makes the login process much more secure. If you haven't already done so, you can generate a new ssh key-pair using the following commands:</p>
 
 {% highlight bash %}
@@ -44,15 +44,40 @@ title: Something something PDC.
 % ssh -A -i id_local <username>@bionimbus-pdc.opensciencedatacloud.org
 {% endhighlight %}
 
-        <p align="justify">(optional - though recommended) To make logging on to virtual machines easier, you can load your public key into the OpenStack controller:</p>
+        <p align="justify">To make logging on to virtual machines easier, you can load your public key into the OpenStack controller:</p>
 
 {% highlight bash %}
 # Copy public key to the PDC server.
 % scp -i id_local id_local.pub <username>@bionimbus-pdc.opensciencedatacloud.org:~/
+
 # Log on to PDC.
 % ssh -A -i id_local <username>@bionimbus-pdc.opensciencedatacloud.org
+
 # Load public key into OpenStack controller.
 % nova keypair-add --pub-key id_local.pub <pubkey_name>
+{% endhighlight %}
+
+        <h3><a name="virtual_machines" class="anchor" href="#virtual_machines"><span class="octicon octicon-link"></span></a>Virtual Machines!</h3>
+
+        <p align="justify">PDC, being a full OpenStack system, is designed with virtual machines in mind. This allows PDC to lease out resources to users on-demand, giving users access to isolated, private and fully customizable environments. Let's start off with launching a virtual machine and see how we can get started building a system!</p>
+
+{% highlight bash %}
+# First we'll start up a new virtual machine instance.
+# We do so by indicating:
+#   1. A saved copy of a virtual machine - the base template for our instance.
+#   2. The flavor of hardware we want - the number of cpus, memory, etc.
+#   3. Which public key to use for controlling ssh access.
+#   4. The name of the new virtual machine instance.
+% nova boot --image Ubuntu-14.04-LTS-20140607 --flavor m1.xxlarge --key-name <pubkey_name> <instance_name>
+
+# Next, we'll wait until the machine is up and has an IP.
+# You can see the current status of your virtual machines by issuing:
+% nova list
+
+# Finally, we'll log into the virtual machine!
+# You'll need to grab the IP from the previous step.
+# Note: The default user for instances based on Ubuntu-14.04-LTS-20140607 is 'ubuntu'.
+% ssh ubuntu@<instance_ip>
 {% endhighlight %}
 
         <h3><a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h3>

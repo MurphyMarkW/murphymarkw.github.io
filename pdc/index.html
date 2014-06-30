@@ -82,6 +82,34 @@ title: Something something PDC.
 
         <p align="justify">Now that you're logged in to the virtual machine, it's time to play around! You'll notice that the virtual machine looks exactly like an Ubuntu server, and the ubuntu user has full root access. This means you can customize the virtual machine in any way you wish! Feel free to play around for a bit before we move on.</p>
 
+        <h3><a name="extra_commands" class="anchor" href="#extra_commands"><span class="octicon octicon-link"></span></a>Extra commands...</h3>
+
+        <p align="justify">The commands we've used so far, <i>nova boot</i> and <i>nova list</i> are but two of a slew of commands available for controlling the OpenStack system. A list of available commands can be printed by issuing the <i>nova</i> commands without any arguments. But let's go over some of the more immediately useful commands. As you'll see, they follow a fairly standard pattern...</p>
+
+{% highlight bash %}
+# Listing commands:
+% nova list         # Running virtual machine instances.
+% nova image-list   # Available virtual machine images.
+% nova flavor-list  # Available virtual machine flavors.
+% nova keypair-list # Loaded ssh keypairs.
+
+# Creation / addition commands:
+% nova boot --image <image_name_or_uuid> --flavor <flavor_name_or_id> --key-name <pubkey_name> <instance_name> # Creation of a new virtual machine.
+% nova image-create <instance_name_or_uuid> <new_image_name>  # Creation of a new image from a running virtual machine.
+% nova keypair-add [--pub-key <pubkey_file>] <pubkey_name>    # Creation and / or addition of a pubkey.
+
+# Deletion / removal commands:
+% nova delete <instance_name_or_uuid>     # Deletion of a running virtual machine instance.
+% nova image-delete <image_name_or_uuid>  # Deletion of a virtual machine image.
+% nova keypair-delete <pubkey_name>       # Deletion of a keypair.
+
+# Detailed information commands:
+% nova show <instance_name_or_uuid>     # Shows detailed information on a running virtual machine instance.
+% nova image-show <image_name_or_uuid>  # Shows detailed information on a virtual machine image.
+% nova flavor-show <flavor_name>        # Shows detailed information on a virtual machine flavor.
+% nova keypair-show <pubkey_name>       # Shows detailed information on a keypair.
+{% endhighlight %}
+
         <h3><a name="adding_storage" class="anchor" href="#adding_storage"><span class="octicon octicon-link"></span></a>Adding storage!</h3>
 
         <p align="justify">TODO</p>

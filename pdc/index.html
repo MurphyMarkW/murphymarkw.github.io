@@ -27,7 +27,7 @@ title: Something something PDC.
 
       <section>
         <h3><a name="welcome" class="anchor" href="#welcome"><span class="octicon octicon-link"></span></a>Welcome!</h3>
-        <p align="justify">Hi there! You've found your way to Mark's Whacky Waving Inflatible Arm Flailing PDC Tutorials! As a beta tested for the new Protected Data Cloud at the University of Chicago, I thought it would be helpful to put together a few tutorials, tips, tricks and gotchas for utilizing the new PDC system. Let's get started!</p>
+        <p align="justify">Hi there! You've found your way to Mark's Whacky Waving Inflatible Arm Flailing PDC Tutorials! As a beta tester for the new Protected Data Cloud at the University of Chicago, I thought it would be helpful to put together a few tutorials, tips, tricks and gotchas for utilizing the new PDC system. Let's get started!</p>
 
         <h3><a name="logging_in" class="anchor" href="#logging_in"><span class="octicon octicon-link"></span></a>Logging in!</h3>
         <p align="justify">Logging into the PDC system is just like logging in to any other system via ssh. However, only login via pubkey is allowed - so no passwords! This makes the login process much more secure. If you haven't already done so, you can generate a new ssh key-pair using the following commands:</p>
@@ -57,7 +57,7 @@ title: Something something PDC.
 % nova keypair-add --pub-key id_local.pub <pubkey_name>
 {% endhighlight %}
 
-        <h3><a name="virtual_machines" class="anchor" href="#virtual_machines"><span class="octicon octicon-link"></span></a>Virtual Machines!</h3>
+        <h3><a name="virtual_machines" class="anchor" href="#virtual_machines"><span class="octicon octicon-link"></span></a>Virtual machines!</h3>
 
         <p align="justify">PDC, being a full OpenStack system, is designed with virtual machines in mind. This allows PDC to lease out resources to users on-demand, giving users access to isolated, private and fully customizable environments. Let's start off with launching a virtual machine and see how we can get started building a system!</p>
 
@@ -80,51 +80,11 @@ title: Something something PDC.
 % ssh ubuntu@<instance_ip>
 {% endhighlight %}
 
-        <h3><a name="projects" class="anchor" href="#projects"><span class="octicon octicon-link"></span></a>Projects</h3>
-        <p align="justify">While not at my day job, I like to spend my time playing with code, usually C/C++ and Python. Here are some of my favorite projects. If you like what you see, feel free to take a copy of my git repos!</p>
+        <p align="justify">Now that you're logged in to the virtual machine, it's time to play around! You'll notice that the virtual machine looks exactly like an Ubuntu server, and the ubuntu user has full root access. This means you can customize the virtual machine in any way you wish! Feel free to play around for a bit before we move on.</p>
 
-        <h3><a name="tensor" href="https://github.com/MurphyMarkW/Tensor.old" target="_top">Tensor</a></h3>
-        <h5><font color="red">Currently not updated on GitHub!</font></h5>
-        <p align="justify">Tensor (or libtensor) is a low-level, high-performance C++ library designed to provide tensor-like syntax to classes with index style accessors. What is a tensor, you ask? You can think of it as a multi-dimensional array, but with some mathematical functionality, such as adding, subtracting, and <a href="http://en.wikipedia.org/wiki/Tensor" target="_top">other cool stuff</a>.</p>
- 
-{% highlight c++ %}
-// libtensor lets you do cool stuff like...
-Tensor<int,1> t(size);              // A regular dynamic array.
-Tensor<int,2> t(size0,size1);       // A dynamic matrix.
-Tensor<int,3> t(size0,size1,size2); // A dynamic... Cube?
-Tensor<int,4> t(size0,...,size3);   // Ok, these must be hard-coded...
-...
-Tensor<int,20> t(size0,size1,...,size19); // Or not...
-...
-Tensor<int,12345> t(size0,size1,...,size12344); // wow   such size   so amaze
+        <h3><a name="adding_storage" class="anchor" href="#adding_storage"><span class="octicon octicon-link"></span></a>Adding storage!</h3>
 
-// Accessors depend on the tensor order, such as...
-Tensor<int,3> t(size0,size1,size2);
-t(1,5)      = 42; // Compile time syntax error!
-t(1,5,3,4)  = 42; // Compile time syntax error!
-t(1,5,3)    = 42; // Got it!
-
-// And you can get at sub-tensor elements as well!
-Tensor<int,3> tensor(size0,size1,size2);
-tensor(1,5,3) = 42;
-
-Tensor<int,2> sub_tensor = tensor[1];
-sub_tensor(5,3) == 42; // True!
-
-Tensor<int,1> sub_sub_tensor = sub_tensor[5];
-sub_sub_tensor(3) == 42; // Also true!
-
-// And it also includes fancy expression templating that -also- behaves like tensors!
-t += (t*(t+t)-(t-3))/5.23; // Optimized at compile-time! Only one pass over t!
-t /= (a*(b+c)-(d-3))/5.23; // Or, only one pass over each a, b, c, d and t!
-{% endhighlight %}
-
-        <h3><a name="genepy" href="https://github.com/MurphyMarkW/genepy" target="_top">Genepy (Génépi)</a></h3>
-        <p align="justify">Genepy is a collection of sometimes random, sometimes directed, potentially useful Python utilities for genomics analysis. Some of the stuff I write for Genepy gets used at my job, some of it gets used by other people, but most of it is just stuff I thought would be useful or interesting. Check it out!</p>
- 
-{% highlight python %}
-# TODO...
-{% endhighlight %}
+        <p align="justify">TODO</p>
 
       </section>
       <footer>
